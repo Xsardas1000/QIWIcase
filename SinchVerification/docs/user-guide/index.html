@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Sinch Verification iOS User Guide</title>
+	<meta name="copyright" content="Copyright (c) 2015 Sinch Networks AB. All rights reserved."/>
+	<link type="text/css" rel="stylesheet" href="css/Sinch.css"/>
+</head>
+<body>
+
+<h1 id="introduction">Introduction</h1>
+
+<p>The Sinch Verification SDK makes verifying phone numbers easy. The Sinch Verification SDK for iOS supports verification of phone numbers via SMS and callout.</p>
+
+<p>This document provides an overview for developers integrating with Sinch Verification SDK for the first time. Please see the <a href="http://www.sinch.com/docs/verification/ios/reference/">Reference Documentation</a> for a comprehensive description of all the classes.</p>
+
+<h1 id="firsttimesetup">First time setup</h1>
+
+<p>This is a step-by-step guide about setting up the Sinch Verification SDK for the first time.</p>
+
+<h2 id="registeranapplication">Register an Application</h2>
+
+<ol>
+<li>Register a Sinch Developer account at <a href="http://www.sinch.com/signup">http://www.sinch.com/signup</a>.</li>
+<li>Set up a new Application using the Dashboard where you can then obtain an <em>Application Key</em>.</li>
+<li>Enable Verification for the application by selecting:
+ <em>Authentication</em> &gt; <em>Public</em> under <em>App</em> &gt; <em>Settings</em> &gt; <em>Verification</em></li>
+</ol>
+
+<h2 id="download">Download</h2>
+
+<p>The Sinch Verification SDK can be downloaded at <a href="http://www.sinch.com/download/">www.sinch.com/download/</a>. It contains: the library binary, this user guide, reference documentation, and sample apps.</p>
+
+<h2 id="addthesinchverificationframework">Add the Sinch Verification framework</h2>
+
+<p>Drag the <em>SinchVerification.framework</em> folder from the SDK distribution package folder into the Frameworks section of the Project Navigator.</p>
+
+<p>The Sinch Verification SDK depends on the following libraries and frameworks: <em>libc++</em>, <em>libicucore</em>, <em>SystemConfiguration.framework</em> and <em>CoreTelephony.framework</em> , which must all be added to the project and linked with the application target.</p>
+
+<figure>
+<img src="images/link-binary-with-libraries-xcode.png" alt="" />
+</figure>
+
+<h3 id="sinchverificationisavailableasacocoapod">Sinch Verification is available as a CocoaPod</h3>
+
+<p>If you are using <a href="http://www.cocoapods.org">CocoaPods</a>, add the following to your Podfile:</p>
+
+<pre><code>target '&lt;your xcode project&gt;' do
+    pod 'SinchVerification'
+end
+</code></pre>
+
+<h1 id="smsverification">SMS Verification</h1>
+
+<p>Verification of a phone number is performed in two steps, a verification SMS is requested and a verification code for that particular verification session is sent to the recipient. It&#8217;s the responsibility of the developer to ask the end-user to provide the verification code from the SMS.</p>
+
+<h2 id="requestansmsverification">Request an SMS verification</h2>
+
+<p>To initiate a SMS verification, start by creating a <code>SINVerification</code>, then request an SMS by invoking <code>-[SINVerification initiateWithCompletionHandler:]</code>.</p>
+
+<pre><code class="objective-c">
+// Get user's current region by carrier info
+NSString* defaultRegion = [SINDeviceRegion currentCountryCode];
+
+NSError *parseError = nil;
+id&lt;SINPhoneNumber&gt; phoneNumber = [SINPhoneNumberUtil() parse:@&quot;&lt;user input&gt;&quot;
+                                               defaultRegion:defaultRegion
+                                                       error:&amp;parseError];
+
+if (!phoneNumber){
+  // Handle invalid user input
+}
+
+NSString *phoneNumberInE164 = [SINPhoneNumberUtil() formatNumber:phoneNumber
+                                                          format:SINPhoneNumberFormatE164];
+
+id&lt;SINVerification&gt; verification = [SINVerification SMSVerificationWithApplicationKey:@&quot;&lt;application key&gt;&quot;
+                                                                          phoneNumber:phoneNumberInE164];
+
+self.verification = verification; // retain the verification instance
+
+[verification initiateWithCompletionHandler:^(id&lt;SINInitiationResult&gt; result, NSError *error) {
+  if (result.success) {
+    // Show UI for entering the code which will be received via SMS
+  }
+}];
+
+</code></pre>
+
+<p>The call to <code>initiateWithCompletionHandler:</code> triggers sending a verification SMS. This method can be called multiple times, in case another SMS should be sent.</p>
+
+<h3 id="phonenumbers-parsingande.164formatting">Phone numbers - Parsing and E.164 Formatting</h3>
+
+<p><em>IMPORTANT</em>: When passing a number as a <code>NSString*</code> to create a <code>SINVerification</code>, the string should contain a number in <em>E.164</em> format. See the section <a href="#phonenumbers">Phone numbers</a> for details.</p>
+
+<h2 id="setthecontentlanguageofansmsverification">Set the content language of an SMS verification</h2>
+
+<p>It is possible to specify the content language when initiating an SMS verification from the SDK. This is specified via a list of <a href="https://tools.ietf.org/html/rfc3282">IETF</a> language tags in order of priority. If the first language is not available, the next one will be selected and so forth. The default is &#8220;en-US&#8221;. </p>
+
+<p>The content language of the actual SMS verification message can be retrieved in <code>id&lt;SINInitiationResult&gt; result</code> of the <code>initiateWithCompletionHandler:</code> callback. </p>
+
+<pre><code class="objective-c">
+    NSArray&lt;NSString *&gt; *languages = @[ @&quot;zh-CN&quot;, @&quot;es-ES&quot;, @&quot;en-US&quot; ];
+    id&lt;SINVerification&gt; verification = [SINVerification SMSVerificationWithApplicationKey:@&quot;&lt;APP KEY&gt;&quot;
+                                                                              phoneNumber:phoneNumberInE164
+                                                                                languages:languages];
+
+    [verification initiateWithCompletionHandler:^(id&lt;SINInitiationResult&gt; result, NSError *error) {
+      if (result.success) {
+        NSLog(@&quot;Content Language is: %@&quot;, result.contentLanguage);
+        // Show UI for entering the code which will be received via SMS
+      }
+    }];
+
+</code></pre>
+
+<p>Note: The content language specified can be overridden by carrier provider specific templates, due to compliance and legal requirements, such as <a href="https://www.usshortcodes.com/info/static/docs/CTIA%20Short%20Code%20Monitoring%20Handbook%20v1.5.2.pdf">US shortcode requirements (pdf)</a>.</p>
+
+<h2 id="validatecode">Validate code</h2>
+
+<p>To complete the verification of the phone number, the user should be instructed to enter the code from the SMS to the application, and the code should be passed to <code>-[SINVerification verifyCode:completionHandler:]</code>. For example:</p>
+
+<pre><code>- (IBAction)done:(id)sender {
+  // User pressed a &quot;Done&quot; button after entering the code from the SMS.
+
+  NSString* code = @&quot;&lt;get code from user input text field&gt;&quot;;
+
+  [self.verification verifyCode:code
+              completionHandler:^(BOOL success, NSError* error) {
+                if (success) {
+                  // Phone number was successfully verified
+                } else {
+                  // Ask user to re-attempt verification
+                }
+              }];
+}
+</code></pre>
+
+<p>The method <code>verifyCode:completionHandler:</code> may be invoked multiple times (for a limited number of times within a short duration). So for example, if the completion handler is invoked with an <code>NSError</code> with domain <code>SINVerificationErrorDomain</code> and code <code>SINVerificationErrorInvalidInput</code> or <code>SINVerificationErrorIncorrectCode</code>, the application may hint to the user that the code was incorrect, let the user adjust it, and call <code>verifyCode:completionHandler:</code> once again on the same <code>SINVerification</code>-instance.</p>
+
+<h1 id="calloutverification">Callout Verification</h1>
+
+<p>Verification of a phone number is performed in one step: a PSTN call to the end-user phone is placed and a text-to-speech or recorded voice will instruct the end-user to press a digit.</p>
+
+<h2 id="requestacalloutverification">Request a callout verification</h2>
+
+<p>To initiate a callout verification, start by creating a <code>SINVerification</code>, then request a callout by invoking <code>-[SINVerification initiateWithCompletionHandler:</code>.</p>
+
+<pre><code class="objective-c">
+// Get user's current region by carrier info
+NSString* defaultRegion = [SINDeviceRegion currentCountryCode];
+
+NSError *parseError = nil;
+id&lt;SINPhoneNumber&gt; phoneNumber = [SINPhoneNumberUtil() parse:@&quot;&lt;user input&gt;&quot;
+                                               defaultRegion:defaultRegion
+                                                       error:&amp;parseError];
+
+if (!phoneNumber){
+  // Handle invalid user input
+}
+
+NSString *phoneNumberInE164 = [SINPhoneNumberUtil() formatNumber:phoneNumber
+                                                          format:SINPhoneNumberFormatE164];
+
+id&lt;SINVerification&gt; verification = [SINVerification calloutVerificationWithApplicationKey:@&quot;&lt;application key&gt;&quot;
+                                                                              phoneNumber:phoneNumberInE164];
+
+[verification initiateWithCompletionHandler:^(id&lt;SINInitiationResult&gt; result, NSError *error) {
+    if (result.success) {
+      // User's phone number was successfully verified
+    } else {
+      if ([error.domain isEqualToString:SINVerificationErrorDomain] &amp;&amp;
+        error.code == SINVerificationErrorCancelled) {
+        // Handle cancellation error code separately
+        NSLog(@&quot;Verification cancelled: %@&quot;, error);
+      } else {
+        // Inform user of error, e.g. that input was invalid.
+      }
+    }
+}];
+</code></pre>
+
+<h3 id="phonenumbers-parsingande.164formatting">Phone numbers - Parsing and E.164 Formatting</h3>
+
+<p><em>IMPORTANT</em>: When passing a number as a <code>NSString*</code> to create a <code>SINVerification</code>, the string should contain a number in <em>E.164</em> format. See the section <a href="#phonenumbers">Phone numbers</a> for details.</p>
+
+<h3 id="re-attempingacallout">Re-attemping a callout</h3>
+
+<p>The method <code>initiateWithCompletionHandler:</code> should not be invoked multiple times. If the application UI flow is structured so that a user can initiate retries for callout verification, it is recommended to create a new instance of <code>SINVerification</code> for each attempt.</p>
+
+<h1 id="guidelinesforactingoncompletionhandleroutcome">Guidelines for acting on completion handler outcome</h1>
+
+<p>As shown in the earlier examples, the completion handler blocks can indicate a successful or a failed outcome for both the <em>initiate</em> and the <em>verify</em> steps. Here are some general guidelines on how to use the completion handler in your application&#8217;s flow:</p>
+
+<ul>
+<li>UI to enter phone number
+
+<ul>
+<li>Success: Progress to enter verification code</li>
+<li>Failure: UI to inform user of a problem and/or ask the user to try again</li>
+</ul></li>
+</ul>
+
+<p><br /></p>
+
+<ul>
+<li>UI to enter verification code (or re-send SMS) or wait for callout verification
+
+<ul>
+<li>Success: Confirmation of successful verification</li>
+<li>Failure: UI to inform user of verification problem</li>
+</ul></li>
+</ul>
+
+<h2 id="handlingfailure">Handling Failure</h2>
+
+<p>The completion handler blocks are passed an <code>NSError</code> when a failure occurs. These errors can have an error domain <code>SINVerificationErrorDomain</code> for which the error codes listed in <code>SINVerificationError.h</code> are applicable, but they can also have a generic Cocoa / Foundation error domain, for example, network-connectivity related errors.</p>
+
+<p>Note that the following error codes can be recovered from by asking the user for new input:</p>
+
+<ul>
+<li><code>SINVerificationErrorInvalidInput</code></li>
+<li><code>SINVerificationErrorIncorrectCode</code></li>
+</ul>
+
+<p><em>IMPORTANT</em>: If a verification is cancelled, the error code <code>SINVerificationErrorCancelled</code> will be given. It is important that the application handle this error code in a way that is not annoying the user. E.g. a cancellation is often a consequence of the user&#8217;s actions so it is in a sense an expected outcome and should in most cases not be shown as an error in a <code>UIAlert</code> (or similar).</p>
+
+<h2 id="networkconnectivityerrors">Network connectivity errors</h2>
+
+<p>The Sinch Verification SDK will try to resend HTTP requests to the Sinch backend if such a request failed due to a network-related error. For example, if a request fails due to the user not having internet connectivity, or the request simply timed out, the SDK schedules a number of retries within 30 seconds. But unless it succeeds during those retries, it will eventually invoke the completion handler blocks with the underlying <code>NSError</code>. For example, it would use domain <code>NSURLErrorDomain</code> and error code <code>NSURLErrorNotConnectedToInternet</code>.</p>
+
+<h1 id="passdatatoyourbackend">Pass data to your backend</h1>
+
+<p>For each call to <code>[SINVerification initiateWithCompletionHandler:]</code>, the Sinch backend performs a callback to the application backend to allow or disallow the initiation of an SMS call or a callout. By using the optional parameter <code>custom</code> on <code>[SINVerification SMSVerificationWithApplicationKey:phoneNumber:custom]</code> or <code>[SINVerification calloutVerificationWithApplicationKey:phoneNumber:custom]</code>, any unique identifier can be passed from the application to the application backend. The data is passed as a string. If there is a need for a more complex datatype, it needs to be stringified or encoded before being sent.</p>
+
+<h1 id="phonenumbers">Phone numbers</h1>
+
+<p>The phone number should be specified according to the E.164 number formatting (http://en.wikipedia.org/wiki/E.164) recommendation and should be prefixed with a <code>+</code>. For example, to verify the US phone number 415 555 0101, the phone number should be specified as <code>+14155550101</code>. The <code>+</code> is the required prefix and the US country code <code>1</code> prepended to the local subscriber number.</p>
+
+<p>The Sinch SDK provides APIs for parsing and formatting phone numbers. The primary class for this functionality is <code>SINPhoneNumberUtil</code>. A key thing when parsing user input as a phone number is the concept of <em>default region</em>; if a user enters their number in a local format, the parsing must know which region / country to assume. Example:</p>
+
+<pre><code class="objective-c">
+// Get user's current region by carrier info
+NSString* defaultRegion = [SINDeviceRegion currentCountryCode];
+
+NSError *parseError = nil;
+id&lt;SINPhoneNumber&gt; phoneNumber = [SINPhoneNumberUtil() parse:@&quot;&lt;user input&gt;&quot;
+                                               defaultRegion:defaultRegion
+                                                       error:&amp;parseError];
+
+</code></pre>
+
+<p><em>IMPORTANT</em>: When passing a number as a <code>NSString*</code> to create a <code>SINVerification</code>, the string should contain a number in <em>E.164</em> format.</p>
+
+<p>A number that have been parsed into a <code>id&lt;SINPhoneNumber&gt;</code> can then be formatted as <em>E.164</em>:</p>
+
+<pre><code class="objective-c">NSString *phoneNumberInE164 = [SINPhoneNumberUtil() formatNumber:phoneNumber
+                                                          format:SINPhoneNumberFormatE164];
+</code></pre>
+
+<h1 id="improvingverificationperformancewithagreatui">Improving verification performance with a great UI</h1>
+
+<p>For better verification performance, it should be straightforward and easy for users to enter their phone numbers. To simplify this step and build a UI that accurately captures the correct input from the users, the Sinch SDK provides some utility APIs.</p>
+
+<h2 id="as-you-type-formatting">As-You-Type-Formatting</h2>
+
+<p>The class <code>SINUITextFieldPhoneNumberFormatter</code> provides <em>&#8220;As-You-Type-Formatting&#8221;</em> on a UITextField. Example usage:</p>
+
+<pre><code class="objective-c">
+UITextField* textField = ... // your text field
+NSString* defaultRegion = [SINDeviceregion currentCountryCode];
+
+SINUITextFieldPhoneNumberFormatter* formatter;
+formatter = [[SINUITextFieldPhoneNumberFormatter alloc] initWithCountryCode:defaultRegion];
+formatter.textField = textField;
+textField.placeholder = [formatter exampleNumberWithFormat:SINPhoneNumberFormatNational];
+formatter.onTextFieldTextDidChange = ^(UITextField *textField) {
+  BOOL isViablePhoneNumber = [SINPhoneNumberUtil() isPossibleNumber:textField.text fromRegion:defaultRegion error:nil]
+    // Update UI based, e.g. color text field based on result
+};
+
+</code></pre>
+
+<p>Example how <em>As-You-Type-Formatting</em> can look for the user:</p>
+
+<figure>
+<img src="images/aytf.gif" alt="" />
+</figure>
+
+<h2 id="listingregionsandcountrydialingcodes">Listing regions and country dialing codes</h2>
+
+<p>Example of populating a <em>UITableView</em> with a list of countries and their country calling code (in <em>Swift</em>):</p>
+
+<pre><code class="swift">
+var regions: Array&lt;SINRegionInfo&gt; = [];
+
+let regionList = PhoneNumberUtil().regionList(forLocale: NSLocale.currentLocale());
+
+regions = regionList.entries.sort({ (a: SINRegionInfo, b: SINRegionInfo) -&gt; Bool in
+            return a.countryDisplayName &lt; b.countryDisplayName;
+          })
+
+</code></pre>
+
+<p>Then as for the <em>UITableViewDataSource</em>:</p>
+
+<pre><code class="swift">
+override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -&gt; UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(...)
+
+        let region = regions[indexPath.row];
+
+        cell.textLabel?.text  = entry.countryDisplayName;
+        cell.detailTextLabel?.text = String(format:&quot;(+%@)&quot;, entry.countryCallingCode);
+
+        return cell;
+}
+
+</code></pre>
+
+<h1 id="swiftsdk">Swift SDK</h1>
+
+<p>The Sinch Verification iOS SDK is also available for <a href="https://developer.apple.com/swift/">Swift</a>.</p>
+
+<h2 id="exampleusage">Example usage</h2>
+
+<pre><code class="swift">
+import SinchVerification;
+
+do {
+
+    let input = &quot;&lt;user input&gt;&quot;
+
+    // Get user's current region by carrier info
+    let defaultRegion = DeviceRegion.currentCountryCode()
+
+    let phoneNumber = try PhoneNumberUtil().parse(input, defaultRegion:defaultRegion)
+    let phoneNumberE164 = PhoneNumberUtil().format(phoneNumber, format: PhoneNumberFormat.E164)
+
+    let verification = SMSVerification(applicationKey:&quot;&lt;APP KEY&gt;&quot;, phoneNumber: phoneNumberInE164)
+
+    verification.initiate { (result: InitiationResult, error: NSError?) -&gt; Void in
+        // handle outcome
+    }    
+
+    let code = &quot;&lt;user input code from SMS&gt;&quot;
+
+    verification.verify(code, completion: { (success: Bool, error:NSError?) -&gt; Void in
+        // handle outcome
+    })
+
+} catch let error as PhoneNumberParseError {
+    // Handle phone number parsing error, i.e. invalid user input.
+}
+
+</code></pre>
+
+<h2 id="importingthesinchverificationswiftsdk">Importing the Sinch Verification Swift SDK</h2>
+
+<h3 id="importascocoapod">Import as CocoaPod</h3>
+
+<p>If you are using <a href="http://www.cocoapods.org">CocoaPods</a>, add the following to your Podfile:</p>
+
+<pre><code>platform :ios, '8.0'
+use_frameworks! 
+pod 'SinchVerification-Swift'
+</code></pre>
+
+<p><em>(Note: The directive <code>use_frameworks!</code> is necessary to make cocoapods add the framework to &#8216;<em>Embedded Binaries</em>&#8217;)</em></p>
+
+<h4 id="noteonuploadingtoappstoreitunesconnect">Note on uploading to App Store / iTunes Connect</h4>
+
+<p>If you integrate the Sinch SDK via <em>CocoaPods</em>, you must not check the option &#8220;Include bitcode&#8221; when uploading the application binary. The reason is a <a href="https://github.com/CocoaPods/CocoaPods/issues/4624">bug in CocoaPods</a>. In the upload dialog in Xcode Organizer it should look something like this:</p>
+
+<figure>
+<img src="images/swift-dont-include-bitcode-upload.png" alt="" />
+</figure>
+
+<h3 id="importsinchverification.frameworkasembeddedbinaries">Import SinchVerification.framework as <em>Embedded Binaries</em></h3>
+
+<p>1) In the Sinch Verification SDK package (SinchVerification-iOS-{VERSION}.tar) there is a <em>SinchVerification.framework</em> bundle in the directory named <code>swift</code>:</p>
+
+<figure>
+<img src="images/add-frameworks-package-structure.png" alt="" />
+</figure>
+
+<p>2) Add it to the Xcode target build settings section <em>Embedded Binaries</em> (under <em>General</em>):</p>
+
+<figure>
+<img src="images/add-frameworks-embedded-binaries.png" alt="" />
+</figure>
+
+<p>3) In the Xcode target build settings, verify that the setting <em>Runpath Search Paths</em> is set to <code>@executable_path/Frameworks</code>.</p>
+
+<figure>
+<img src="images/add-frameworks-search-paths.png" alt="" />
+</figure>
+
+<p>4) Setup to run <code>strip-frameworks.sh</code> as a <em>&#8220;Run Script Phase&#8221;</em></p>
+
+<p>Create a new <em>&#8220;Run Script Phase&#8221;</em> in your application target&#8217;s <em>&#8220;Build Phases&#8221;</em> and paste the following snippet:</p>
+
+<pre><code>bash ${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/SinchVerification.framework/strip-frameworks.sh
+</code></pre>
+
+<p><br />
+<img src="images/swift-run-script-add.png" alt="" />
+<br />
+<img src="images/swift-run-script-contents.png" alt="" /></p>
+
+<p>(This step is required to work around an <a href="http://www.openradar.me/radar?id=6409498411401216">App Store / iTunes Connect bug</a>)</p>
+
+<p>5) Make sure that <em>libc++</em> and <em>libicucore</em> are linked (See <a href="#firsttimesetup">here</a>)</p>
+
+<figure>
+<img src="images/link-binary-with-libraries-xcode.png" alt="" />
+</figure>
+
+<h4 id="thatsit">That&#8217;s it!</h4>
+
+<p>Now the SDK can be imported as follows (from any of your .swift files)</p>
+
+<pre><code>import SinchVerification
+</code></pre>
+
+<p><em>(Note: This import method requires iOS Deployment Target iOS 8.0 or above)</em></p>
+
+<h1 id="troubleshootingandfaq">Troubleshooting and FAQ</h1>
+
+<p><strong>Q</strong>: Does the Sinch SDK handle network connectivity errors?</p>
+
+<p><strong>A</strong>: Yes to some extent, see the section <a href="#networkconnectivityerrors">Network connectivity errors</a></p>
+
+<p><strong>Q</strong>: What is the size footprint of the Sinch Verification SDK? </p>
+
+<p><strong>A</strong>: Please see <a href="#sizefootprint:sinchverification.frameworkfilesizecomparedtolinkedsize">SinchVerification.framework file size vs. linked size </a></p>
+
+<p><strong>Q</strong>: How do I resolve linker errors, such as:</p>
+
+<pre><code>Undefined symbols for architecture:
+  &quot;_SCNetworkReachabilitySetDispatchQueue&quot;, referenced from: ... 
+  &quot;_SCNetworkReachabilitySetCallback&quot;, referenced from: ... 
+  &quot;_SCNetworkReachabilityCreateWithName&quot;, referenced from: ...
+
+  &quot;_uregex_reset&quot;, referenced from: i18n::phonenumbers::ICUCRegExp:: ...
+  &quot;_utext_clone&quot;, referenced from: i18n::phonenumbers::ExtractUtf8String ...
+
+  &quot;std::__1::basic_istream&lt;char, ...  referenced from:
+  &quot;std::__1::basic_string&lt;char, ... referenced from:
+</code></pre>
+
+<p><strong>A</strong>: You must add and link against the iOS system libraries and Frameworks listed in <a href="#firsttimesetup">First time setup</a>.</p>
+
+<p><strong>Q</strong>: How do I resolve Swift linker errors (runtime errors), such as:</p>
+
+<pre><code>dyld: Library not loaded: @rpath/libswiftCore.dylib
+  Reason: image not found
+dyld: Library not loaded: @rpath/SinchVerification.framework/SinchVerification
+  Reason: image not found
+</code></pre>
+
+<p><strong>A</strong>: The Sinch Swift frameworks are <em>dynamic</em> frameworks, so make sure that you&#8217;ve added the Sinch Swift framework bundles as <em>Embedded Binaries</em>. Further, In the Xcode target build settings, verify that the setting <em>Runpath Search Paths</em> is set to <code>@executable_path/Frameworks</code>.</p>
+
+<p><strong>Q</strong>: My application is rejected when uploaded to the Apple App Store / iTunes Connect</p>
+
+<p>Possible errors:</p>
+
+<pre><code>The executable for YourApp.app/Frameworks/SinchVerification.framework contains unsupported architectures '[x86_64, i386]'.
+
+Invalid Segment Alignment. The app binary at 'YourApp.app/Frameworks/SinchVerification.framework/SinchVerification' does not have proper segment alignment. Try rebuilding the app with the latest Xcode version
+
+The binary is invalid. The encryption info in the LC_ENCRYPTION_INFO load command is either missing or invalid, or the binary is already encrypted. This binary does not seem to have been built with Apple's linker.
+</code></pre>
+
+<p>or</p>
+
+<pre><code>The archive did not contain ... .xcarchive/BCSymbolMaps/&lt;UUID&gt;.bcsymbolmap as expected.
+</code></pre>
+
+<p><strong>A</strong> (If you are using <em>CocoaPods</em>): </p>
+
+<p>Make sure that the Xcode build setting <em>Valid Architectures</em> (VALID_ARCHS) does <em>not</em> contain any of the iOS Simulator architectures (i386 or x86_64). (For details, see <a href="https://github.com/CocoaPods/CocoaPods/blob/691e3de4405a0b7174ccd9ca85912a045d286aa2/lib/cocoapods/generator/embed_frameworks_script.rb#L111">here</a> for details on how <em>CocoaPods</em> is stripping iOS Simulator architectures.)</p>
+
+<p>If you have the error concerning <code>.bcsymbolmap</code> files, try unchecking the <em>Include bitcode</em> checkbox when uploading your application binary.</p>
+
+<p><strong>A</strong> (If you have manually added the <em>SinchVerification.framework</em> to <em>Embedded Binaries</em>):</p>
+
+<p>Make sure you have added the <code>strip-frameworks.sh</code> as part of a Xcode <em>&#8220;Run Script Phase&#8221;</em>, see the <a href="#importsinchverification.frameworkasembeddedbinaries">Swift section</a> for details.</p>
+
+<h1 id="miscellaneous">Miscellaneous</h1>
+
+<h2 id="minimumrequirements">Minimum requirements</h2>
+
+<p>iOS 7.0 is the minimum version required for using the Sinch SDK (iOS Deployment Target).</p>
+
+<h2 id="grandcentraldispatchgcdqueues">Grand Central Dispatch (GCD) Queues</h2>
+
+<p>By default the <code>SINSMSVerification</code> invokes the completion handler blocks on the main thread or main GCD queue. This can be changed by using <code>-[SINVerification setCompletionQueue:]</code>.</p>
+
+<h2 id="sizefootprint:sinchverification.frameworkfilesizecomparedtolinkedsize">Size footprint: SinchVerification.framework file size compared to linked size</h2>
+
+<p>The <em>SinchVerification.framework</em> bundle includes a fat library containing the architectures <em>armv7</em>, <em>arm64</em>, <em>i386</em> and <em>x86_64</em>. When linking an application target against the <em>SinchVerification.framework</em> targeting an iOS device, it will add approximately 3Mb per architecture slice.</p>
+
+<h2 id="encryptionexportregulations">Encryption export regulations</h2>
+
+<p>Please check the Summary of U.S. Export Controls Applicable to Commercial Encryption Products and ensure that the application is registered for the Encryption Regulations, if applicable. It can be found under this <a href="http://www.sinch.com/export">link</a>.</p>
+
+</body>
+</html>

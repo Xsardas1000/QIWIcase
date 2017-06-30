@@ -1,0 +1,134 @@
+2.0.4
+  - Re-build of Swift flavor of SinchVerification.framework for
+    compatibility with Xcode 8.3 and Swift 3.1.
+
+2.0.3
+  - Support for making the CocoaPod 'SinchVerification-Swift' compile
+    Swift bindings from source, to avoid Swift ABI incompatibilities
+    in between Xcode / clang versions.
+
+2.0.2
+  - Re-build of Swift flavor of SinchVerification.framework for
+    compatibility with Xcode 8.1.
+
+2.0.1:
+  - Fix potential duplicate symbol linker error.
+
+2.0.0:
+  - Breaking API change:
+    Instead of a boolean value, the result of verification initiation 
+    will be returned in an object which contains both the result and 
+    the SMS content language. 
+
+  - Added support for specifying the content language of an SMS 
+    verification.
+
+  - Renamed SINLogSeverity into SINVLogSeverity to avoid error:
+    "Reference to SINLogSeverity is ambiguous" when developer uses 
+    both RTC and Verification SDK from Sinch.
+
+1.4.8:
+  - Rebuilt Swift framework with Swift 3.x
+
+  - Updated Sample App code to Swift 3.x
+
+  - Added Swift 2.x compatible source code bindings (see swift2/)
+
+1.4.7:
+  - Added Swift 3.x compatible source code bindings (see swift3/)
+
+  - Rebuilt Swift framework with Xcode 8 to avoid Xcode error
+    "Module file was created by an older version of the compiler".
+
+1.4.6:
+  - Fixed possible dead-lock in -[SINVerification dealloc]
+    (GCD queue 'com.sinch.http.retry.work', _dispatch_barrier_sync_f_slow)
+
+1.4.5:
+  - Updated libphonenumber to version 7.4.1.
+  - Improved internal logging.
+
+1.4.4
+  - Rebuilt Swift framework with Xcode 7.3.1 to avoid Xcode error
+    "Module file was created by an older version of the compiler".
+
+1.4.3
+  - Rebuilt Swift framework with Xcode 7.3 to avoid Xcode error
+    "Module file was created by an older version of the compiler".
+
+  - Swift: Added SMSVerification constructor that takes
+    application-specific "custom" data.
+
+1.4.2
+  - Workaround for possible App Store submission issues due to that
+    SinchVerification.framework contains a universal / FAT binary that
+    also contains iOS Simulator architectures (i386, x86_64):
+    
+    Add strip-frameworks.sh script to the Swift flavor of
+    SinchVerification.framework. This script should be setup to run as
+    part of an Xcode "Run Script Phase". See the documentation / User
+    Guide for details on how to set this up.
+  
+  - Support linking with -all_load.
+      (Fixes linker error: undefined symbol
+       google::protobuf::internal::WireFormat::SkipMessage)
+      
+1.4.1
+  - Fix memory leak in SINPhoneNumberUtil.
+
+1.4.0
+  - New APIs for parsing, formatting and displaying phone numbers.
+  
+    - Available for both Swift and Objective-C.
+    
+    - SINPhoneNumberUtil: Provides methods to parse and format phone
+      numbers.
+      
+    - SINUITextFieldPhoneNumberFormatter: Helper for implementing
+      "As-You-Type-Formatting" on a UITextField.
+
+    - SINDeviceRegion: Helper to get current device's current region
+      ISO-3166-1 country code
+
+    - SINRegionList and SINRegionInfo: Useful for displaying a list of
+      regions / countries including their ITU-T country calling codes.
+  
+    - Sample apps updated to show new phone number functionality.
+
+  - Require linking against libc++ and libicucore.
+
+1.3.4
+  - Fix SYMROOT in sample app projects
+  
+1.3.3
+  - Xcode 7.1 compatibility
+
+1.3.2
+  - Add include guard for SINLogSeverity type
+
+1.3.1
+  - Improvements to callout verification when used in combination with
+    SMS verification.
+
+
+1.3
+  - New Callout functionality
+  - New error code SINVerificationErrorCancelled (see sample app
+      SinchCalloutVerification for example usage.)
+  
+1.2
+  - Support for Xcode LLVM Bitcode
+  - Add support for logging callback.
+      See SINLog.h and +[SINVerification setLogCallback:].
+  - Improved error messages: Fixed use of NSUnderlyingErrorKey for
+    Sinch specific NSErrors.
+
+1.1
+  - Sample app updates for Xcode 7 and iOS 9 and Swift 2.0
+
+1.0
+  - SMS Verification GA
+  - Verification reports available in the Sinch Portal
+0.9.1-beta
+  - Added Swift bindings
+

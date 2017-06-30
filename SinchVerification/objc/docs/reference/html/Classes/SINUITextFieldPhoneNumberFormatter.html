@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>SINUITextFieldPhoneNumberFormatter Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1334)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">SinchVerification </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Sinch</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/onTextFieldTextDidChange">onTextFieldTextDidChange</option>
+		
+	</optgroup>
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/exampleNumberWithFormat:">- exampleNumberWithFormat:</option>
+		
+		<option value="//api/name/init">- init</option>
+		
+		<option value="//api/name/initWithCountryCode:">- initWithCountryCode:</option>
+		
+		<option value="//api/name/initWithPhoneNumberUtil:countryCode:">- initWithPhoneNumberUtil:countryCode:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">SINUITextFieldPhoneNumberFormatter Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>SINUITextFieldPhoneNumberFormatter.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>SINUITextFieldPhoneNumberFormatter is a helper to perform
+As-You-Type-Formatting on a UITextField. The formatter performs
+formatting based on the region country code given at
+initialization.</p>
+
+<p>Example usage:</p>
+
+<pre><code>// Assuming the following properties:
+@property UITextField* textField;
+@property SINUITextFieldPhoneNumberFormatter* formatter;
+
+self.formatter = [[SINUITextFieldPhoneNumberFormatter alloc] init];
+self.formatter.textField = self.textField;
+self.textField.placeholder = [self.formatter exampleNumberWithFormat:
+                               SINPhoneNumberFormatNational];
+</code></pre>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/onTextFieldTextDidChange" title="onTextFieldTextDidChange"></a>
+	<h3 class="method-title"><code><a href="#//api/name/onTextFieldTextDidChange">&nbsp;&nbsp;onTextFieldTextDidChange</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>onTextFieldTextDidChange is a block that is invoked when the text value of
+the observed UITextField changes. This callback handles both events
+from UITextFieldTextDidChangeNotification and KVO-events for the
+UITextField.text property.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readwrite, nullable) void ( ^ ) ( UITextField *) onTextFieldTextDidChange</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>It can be used to implement additional hooks like indicating to the
+user whether the current input is a possibly valid phone number,
+e.g. with <a href="../Protocols/SINPhoneNumberUtil.html#//api/name/isPossibleNumber:error:">[SINPhoneNumberUtil isPossibleNumber:error:]</a>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINUITextFieldPhoneNumberFormatter.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/init" title="init"></a>
+	<h3 class="method-title"><code><a href="#//api/name/init">&ndash;&nbsp;init</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Default initialization. Equivalent to initializing with
+SINPhoneNumberUtil() and <a href="../Classes/SINDeviceRegion.html#//api/name/currentCountryCode">[SINDeviceRegion currentCountryCode]</a>.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)init</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINUITextFieldPhoneNumberFormatter.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithCountryCode:" title="initWithCountryCode:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithCountryCode:">&ndash;&nbsp;initWithCountryCode:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>ISO 3166-1 two-letter country code that
+indicates the country/region where the phone
+number is being entered.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithCountryCode:(NSString *)<em>isoCountryCode</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>isoCountryCode</code></th>
+						<td><p>ISO 3166-1 two-letter country code that
+indicates the country/region where the phone
+number is being entered.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINUITextFieldPhoneNumberFormatter.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithPhoneNumberUtil:countryCode:" title="initWithPhoneNumberUtil:countryCode:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithPhoneNumberUtil:countryCode:">&ndash;&nbsp;initWithPhoneNumberUtil:countryCode:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Designated initializer.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithPhoneNumberUtil:(id&lt;SINPhoneNumberUtil&gt;)<em>phoneNumberUtil</em> countryCode:(NSString *)<em>isoCountryCode</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>phoneNumberUtil</code></th>
+						<td><p>instance of utility class that will be used
+for phone number parsing and formatting.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>isoCountryCode</code></th>
+						<td><p>ISO 3166-1 two-letter country code that
+indicates the country/region where the phone
+number is being entered.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINUITextFieldPhoneNumberFormatter.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/exampleNumberWithFormat:" title="exampleNumberWithFormat:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/exampleNumberWithFormat:">&ndash;&nbsp;exampleNumberWithFormat:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Get a an example phone number formatted according to given format.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSString *)exampleNumberWithFormat:(SINPhoneNumberFormat)<em>format</em></code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>a formatted phone number string. Will return an empty
+string if no example phone number is available for the
+given region country code.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The returned string can be used as placeholder text for a
+UITextField.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINUITextFieldPhoneNumberFormatter.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2017 Sinch. All rights reserved. Updated: 2017-04-28</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

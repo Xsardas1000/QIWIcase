@@ -1,0 +1,117 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/Shared/Jenkins/Home/workspace/sinch_ios_verification/src/main/swift3/SinchVerification.swift",
+      "line": 263,
+      "symbol": "LogSeverity",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Shared/Jenkins/Home/workspace/sinch_ios_verification/src/main/swift3/SinchVerification.swift",
+      "line": 359,
+      "symbol": "PhoneNumberFormat.e164",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Shared/Jenkins/Home/workspace/sinch_ios_verification/src/main/swift3/SinchVerification.swift",
+      "line": 360,
+      "symbol": "PhoneNumberFormat.international",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Shared/Jenkins/Home/workspace/sinch_ios_verification/src/main/swift3/SinchVerification.swift",
+      "line": 361,
+      "symbol": "PhoneNumberFormat.national",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Shared/Jenkins/Home/workspace/sinch_ios_verification/src/main/swift3/SinchVerification.swift",
+      "line": 368,
+      "symbol": "PhoneNumberParseError.invalidCountryCode",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Shared/Jenkins/Home/workspace/sinch_ios_verification/src/main/swift3/SinchVerification.swift",
+      "line": 369,
+      "symbol": "PhoneNumberParseError.notANumber",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Shared/Jenkins/Home/workspace/sinch_ios_verification/src/main/swift3/SinchVerification.swift",
+      "line": 370,
+      "symbol": "PhoneNumberParseError.tooShortAfterIDD",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Shared/Jenkins/Home/workspace/sinch_ios_verification/src/main/swift3/SinchVerification.swift",
+      "line": 371,
+      "symbol": "PhoneNumberParseError.tooShortNSN",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Shared/Jenkins/Home/workspace/sinch_ios_verification/src/main/swift3/SinchVerification.swift",
+      "line": 372,
+      "symbol": "PhoneNumberParseError.tooLongNSN",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Shared/Jenkins/Home/workspace/sinch_ios_verification/src/main/swift3/SinchVerification.swift",
+      "line": 380,
+      "symbol": "PhoneNumberValidationError.invalidCountryCode",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Shared/Jenkins/Home/workspace/sinch_ios_verification/src/main/swift3/SinchVerification.swift",
+      "line": 381,
+      "symbol": "PhoneNumberValidationError.notANumber",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Shared/Jenkins/Home/workspace/sinch_ios_verification/src/main/swift3/SinchVerification.swift",
+      "line": 382,
+      "symbol": "PhoneNumberValidationError.tooShort",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Shared/Jenkins/Home/workspace/sinch_ios_verification/src/main/swift3/SinchVerification.swift",
+      "line": 383,
+      "symbol": "PhoneNumberValidationError.tooLong",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Shared/Jenkins/Home/workspace/sinch_ios_verification/src/main/swift3/SinchVerification.swift",
+      "line": 535,
+      "symbol": "TextFieldPhoneNumberFormatter.textField",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Shared/Jenkins/Home/workspace/sinch_ios_verification/src/main/swift3/SinchVerification.swift",
+      "line": 544,
+      "symbol": "TextFieldPhoneNumberFormatter.countryCode",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Shared/Jenkins/Home/workspace/sinch_ios_verification/src/main/swift3/SinchVerification.swift",
+      "line": 594,
+      "symbol": "DeviceRegion",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/Shared/Jenkins/Home/workspace/sinch_ios_verification"
+}

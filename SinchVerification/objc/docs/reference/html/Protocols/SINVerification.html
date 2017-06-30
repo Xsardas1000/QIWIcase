@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>SINVerification Protocol Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1334)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">SinchVerification </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Sinch</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/cancel">- cancel</option>
+		
+		<option value="//api/name/initiateWithCompletionHandler:">- initiateWithCompletionHandler:</option>
+		
+		<option value="//api/name/setCompletionQueue:">- setCompletionQueue:</option>
+		
+		<option value="//api/name/setEnvironmentHost:">- setEnvironmentHost:</option>
+		
+		<option value="//api/name/verifyCode:completionHandler:">- verifyCode:completionHandler:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">SINVerification Protocol Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Conforms to</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>SINVerification.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/initiateWithCompletionHandler:" title="initiateWithCompletionHandler:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initiateWithCompletionHandler:">&ndash;&nbsp;initiateWithCompletionHandler:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Initiate the verification.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)initiateWithCompletionHandler:(void ( ^ ) ( id&lt;SINInitiationResult&gt; result , NSError *__nullable error ))<em>completionHandler</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completionHandler</code></th>
+						<td><p>Block that will be invoked upon successful initiation.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>A request will be sent to the Sinch backend, which in case of SMS-based verification,
+will initiate sending an SMS to the destination phone number.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINVerification.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/verifyCode:completionHandler:" title="verifyCode:completionHandler:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/verifyCode:completionHandler:">&ndash;&nbsp;verifyCode:completionHandler:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Complete the verification by verifying the verification code sent to the user.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)verifyCode:(NSString *)<em>code</em> completionHandler:(void ( ^ ) ( BOOL success , NSError *__nullable error ))<em>completionHandler</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>code</code></th>
+						<td><p>Verification code that the user received and have given as input to the application.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completionHandler</code></th>
+						<td><p>Block that will be invoked upon successful initiation.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINVerification.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/cancel" title="cancel"></a>
+	<h3 class="method-title"><code><a href="#//api/name/cancel">&ndash;&nbsp;cancel</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Cancel the verification (client-side only).</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)cancel</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Note that cancelling is a client-side only action, i.e. it will not send any
+further requests to the Sinch platform and it does not guarantee that a SMS
+or a callout won&rsquo;t be made to the user&rsquo;s device. What it will do is cancel any
+long-polling requests that this verification instance may be maintaining (e.g.
+a callout verification is performing polling to query the Sinch platform for
+the status of the verification)</p>
+
+<p>If the verification is in a state where a completion handler have been specified,
+the handler will be invoked with the error code SINVerificationErrorCancelled.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINVerification.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setEnvironmentHost:" title="setEnvironmentHost:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setEnvironmentHost:">&ndash;&nbsp;setEnvironmentHost:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Specify a specific Sinch environment host. (This is not mandatory)
+This must be set before <a href="#//api/name/initiateWithCompletionHandler:">initiateWithCompletionHandler:</a> or <a href="#//api/name/verifyCode:completionHandler:">verifyCode:completionHandler:</a> is called.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)setEnvironmentHost:(NSString *)<em>environmentHost</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>environmentHost</code></th>
+						<td><p>Host for base URL for the Sinch API environment to be used. E.g. &lsquo;sandbox.sinch.com&rsquo;</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINVerification.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setCompletionQueue:" title="setCompletionQueue:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setCompletionQueue:">&ndash;&nbsp;setCompletionQueue:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Specify a dispatch queue on which <code>completionHandler</code> blocks of a SINVerification
+should be invoked on. Unless specified, the main queue is used by default.
+This must be set before <a href="#//api/name/initiateWithCompletionHandler:">initiateWithCompletionHandler:</a> or <a href="#//api/name/verifyCode:completionHandler:">verifyCode:completionHandler:</a> is called.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)setCompletionQueue:(dispatch_queue_t)<em>completionQueue</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completionQueue</code></th>
+						<td><p>GCD dispatch queue</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINVerification.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2017 Sinch. All rights reserved. Updated: 2017-04-28</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

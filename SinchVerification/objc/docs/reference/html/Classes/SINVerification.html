@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>SINVerification Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1334)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">SinchVerification </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Sinch</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/SMSVerificationWithApplicationKey:phoneNumber:">+ SMSVerificationWithApplicationKey:phoneNumber:</option>
+		
+		<option value="//api/name/SMSVerificationWithApplicationKey:phoneNumber:custom:">+ SMSVerificationWithApplicationKey:phoneNumber:custom:</option>
+		
+		<option value="//api/name/SMSVerificationWithApplicationKey:phoneNumber:custom:languages:">+ SMSVerificationWithApplicationKey:phoneNumber:custom:languages:</option>
+		
+		<option value="//api/name/SMSVerificationWithApplicationKey:phoneNumber:languages:">+ SMSVerificationWithApplicationKey:phoneNumber:languages:</option>
+		
+		<option value="//api/name/calloutVerificationWithApplicationKey:phoneNumber:">+ calloutVerificationWithApplicationKey:phoneNumber:</option>
+		
+		<option value="//api/name/calloutVerificationWithApplicationKey:phoneNumber:custom:">+ calloutVerificationWithApplicationKey:phoneNumber:custom:</option>
+		
+		<option value="//api/name/setLogCallback:">+ setLogCallback:</option>
+		
+		<option value="//api/name/version">+ version</option>
+		
+	</optgroup>
+	
+
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">SINVerification Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>SINVerification.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>The SINVerification is the entry point of the Sinch Verification SDK.</p>
+
+<h3>Example</h3>
+
+<pre><code> NSError *error = nil;
+ idSINPhoneNumber phoneNumber = [SINPhoneNumberUtil() parse:@"415 555 0101"
+                                              defaultRegion:@"US"
+                                                      error:&amp;error];
+
+ NSString* phoneNumberE164 = [SINPhoneNumberUtil() formatNumber:phoneNumber
+                                                         format:SINPhoneNumberFormatE164];
+
+ id&lt;SINVerification&gt; verification = [SINVerification SMSVerificationWithApplicationKey:@"&lt;APPKEY&gt;"
+                                                                          phoneNumber:phoneNumberE164];
+
+ [self.verification initiateWithCompletionHandler:^(id&lt;SINInitiationResult&gt; result, NSError *error) {
+   // verification initiated, user will now receive an SMS to their phone.
+ }];
+
+ NSString* code; // get user to input code received in SMS
+
+ [self.verification verifyCode:(NSString*) code completionHandler:^(BOOL success, NSError *error) {
+   // verification completed
+ }];
+</code></pre>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/SMSVerificationWithApplicationKey:phoneNumber:" title="SMSVerificationWithApplicationKey:phoneNumber:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/SMSVerificationWithApplicationKey:phoneNumber:">+&nbsp;SMSVerificationWithApplicationKey:phoneNumber:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Instantiate a new SMS-based verification.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (id&lt;SINVerification&gt;)SMSVerificationWithApplicationKey:(NSString *)<em>applicationKey</em> phoneNumber:(NSString *)<em>phoneNumber</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>applicationKey</code></th>
+						<td><p>Application key identifying the application.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>phoneNumber</code></th>
+						<td><p>The phone number to verify.
+The phone number should be given according to E.164 number formatting
+(<a href="http://en.wikipedia.org/wiki/E.164">http://en.wikipedia.org/wiki/E.164)</a>) and should be prefixed with a &lsquo;+&rsquo;.
+E.g. to call the US phone number 415 555 0101, it should be specified as
+&ldquo;+14155550101&rdquo;, where the &lsquo;+&rsquo; is the required prefix and the US country
+code &lsquo;1&rsquo; added before the local subscriber number.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>A new SMS-based SINVerification instance.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Protocols/SINPhoneNumberUtil.html">SINPhoneNumberUtil</a> for formatting a phone number in E.164 format.</p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINVerification.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/SMSVerificationWithApplicationKey:phoneNumber:languages:" title="SMSVerificationWithApplicationKey:phoneNumber:languages:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/SMSVerificationWithApplicationKey:phoneNumber:languages:">+&nbsp;SMSVerificationWithApplicationKey:phoneNumber:languages:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Instantiate a new SMS-based verification.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (id&lt;SINVerification&gt;)SMSVerificationWithApplicationKey:(NSString *)<em>applicationKey</em> phoneNumber:(NSString *)<em>phoneNumber</em> languages:(NSArray&lt;NSString*&gt; *)<em>languageTags</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>applicationKey</code></th>
+						<td><p>Application key identifying the application.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>phoneNumber</code></th>
+						<td><p>The phone number to verify.
+The phone number should be given according to E.164 number formatting
+(<a href="http://en.wikipedia.org/wiki/E.164">http://en.wikipedia.org/wiki/E.164)</a>) and should be prefixed with a &lsquo;+&rsquo;.
+E.g. to call the US phone number 415 555 0101, it should be specified as
+&ldquo;+14155550101&rdquo;, where the &lsquo;+&rsquo; is the required prefix and the US country
+code &lsquo;1&rsquo; added before the local subscriber number.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>languageTags</code></th>
+						<td><p>The preferred content language for SMS verification. It is specified
+via a list of IETF language tags in order of priority. If the first
+language is not available, the next one will be selected and so forth.
+The default is &lsquo;en-US&rsquo;.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>A new SMS-based SINVerification instance.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Protocols/SINPhoneNumberUtil.html">SINPhoneNumberUtil</a> for formatting a phone number in E.164 format.</p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINVerification.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/SMSVerificationWithApplicationKey:phoneNumber:custom:" title="SMSVerificationWithApplicationKey:phoneNumber:custom:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/SMSVerificationWithApplicationKey:phoneNumber:custom:">+&nbsp;SMSVerificationWithApplicationKey:phoneNumber:custom:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Instantiate a new SMS-based verification.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (id&lt;SINVerification&gt;)SMSVerificationWithApplicationKey:(NSString *)<em>applicationKey</em> phoneNumber:(NSString *)<em>phoneNumber</em> custom:(NSString *)<em>custom</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>applicationKey</code></th>
+						<td><p>Application key identifying the application.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>phoneNumber</code></th>
+						<td><p>The phone number to verify.
+The phone number should be given according to E.164 number formatting
+(<a href="http://en.wikipedia.org/wiki/E.164">http://en.wikipedia.org/wiki/E.164)</a>) and should be prefixed with a &lsquo;+&rsquo;.
+E.g. to call the US phone number 415 555 0101, it should be specified as
+&ldquo;+14155550101&rdquo;, where the &lsquo;+&rsquo; is the required prefix and the US country
+code &lsquo;1&rsquo; added before the local subscriber number.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>custom</code></th>
+						<td><p>Application-specific custom data that will be passed to
+REST API callbacks made to the application&rsquo;s backend.
+This custom data will also be written to CDRs (Call Detail Records).
+(If complex data is to be passed along, it must first be encoded as a
+NSString*, e.g. encoded as JSON or Base64.)</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>A new SMS-based SINVerification instance.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Protocols/SINPhoneNumberUtil.html">SINPhoneNumberUtil</a> for formatting a phone number in E.164 format.</p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINVerification.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/SMSVerificationWithApplicationKey:phoneNumber:custom:languages:" title="SMSVerificationWithApplicationKey:phoneNumber:custom:languages:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/SMSVerificationWithApplicationKey:phoneNumber:custom:languages:">+&nbsp;SMSVerificationWithApplicationKey:phoneNumber:custom:languages:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Instantiate a new SMS-based verification.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (id&lt;SINVerification&gt;)SMSVerificationWithApplicationKey:(NSString *)<em>applicationKey</em> phoneNumber:(NSString *)<em>phoneNumber</em> custom:(NSString *)<em>custom</em> languages:(NSArray&lt;NSString*&gt; *)<em>languageTags</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>applicationKey</code></th>
+						<td><p>Application key identifying the application.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>phoneNumber</code></th>
+						<td><p>The phone number to verify.
+The phone number should be given according to E.164 number formatting
+(<a href="http://en.wikipedia.org/wiki/E.164">http://en.wikipedia.org/wiki/E.164)</a>) and should be prefixed with a &lsquo;+&rsquo;.
+E.g. to call the US phone number 415 555 0101, it should be specified as
+&ldquo;+14155550101&rdquo;, where the &lsquo;+&rsquo; is the required prefix and the US country
+code &lsquo;1&rsquo; added before the local subscriber number.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>custom</code></th>
+						<td><p>Application-specific custom data that will be passed to
+REST API callbacks made to the application&rsquo;s backend.
+This custom data will also be written to CDRs (Call Detail Records).
+(If complex data is to be passed along, it must first be encoded as a
+NSString*, e.g. encoded as JSON or Base64.)</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>languageTags</code></th>
+						<td><p>The preferred content language for SMS verification. It is specified
+via a list of IETF language tags in order of priority. If the first
+language is not available, the next one will be selected and so forth.
+The default is &lsquo;en-US&rsquo;.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>A new SMS-based SINVerification instance.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Protocols/SINPhoneNumberUtil.html">SINPhoneNumberUtil</a> for formatting a phone number in E.164 format.</p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINVerification.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/calloutVerificationWithApplicationKey:phoneNumber:" title="calloutVerificationWithApplicationKey:phoneNumber:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/calloutVerificationWithApplicationKey:phoneNumber:">+&nbsp;calloutVerificationWithApplicationKey:phoneNumber:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Instantiate a new Callout-based verification. The Sinch backend
+will call out to the given phone number to verify the phone number.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (id&lt;SINVerification&gt;)calloutVerificationWithApplicationKey:(NSString *)<em>applicationKey</em> phoneNumber:(NSString *)<em>phoneNumber</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>applicationKey</code></th>
+						<td><p>Application key identifying the application.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>phoneNumber</code></th>
+						<td><p>The phone number to verify.
+The phone number should be given according to E.164 number formatting
+(<a href="http://en.wikipedia.org/wiki/E.164">http://en.wikipedia.org/wiki/E.164)</a>) and should be prefixed with a &lsquo;+&rsquo;.
+E.g. to call the US phone number 415 555 0101, it should be specified as
+&ldquo;+14155550101&rdquo;, where the &lsquo;+&rsquo; is the required prefix and the US country
+code &lsquo;1&rsquo; added before the local subscriber number.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>A new Callout-based SINVerification instance.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Protocols/SINPhoneNumberUtil.html">SINPhoneNumberUtil</a> for formatting a phone number in E.164 format.</p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINVerification.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/calloutVerificationWithApplicationKey:phoneNumber:custom:" title="calloutVerificationWithApplicationKey:phoneNumber:custom:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/calloutVerificationWithApplicationKey:phoneNumber:custom:">+&nbsp;calloutVerificationWithApplicationKey:phoneNumber:custom:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Instantiate a new Callout-based verification. The Sinch backend
+will call out to the given phone number to verify the phone number.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (id&lt;SINVerification&gt;)calloutVerificationWithApplicationKey:(NSString *)<em>applicationKey</em> phoneNumber:(NSString *)<em>phoneNumber</em> custom:(NSString *)<em>custom</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>applicationKey</code></th>
+						<td><p>Application key identifying the application.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>phoneNumber</code></th>
+						<td><p>The phone number to verify.
+The phone number should be given according to E.164 number formatting
+(<a href="http://en.wikipedia.org/wiki/E.164">http://en.wikipedia.org/wiki/E.164)</a>) and should be prefixed with a &lsquo;+&rsquo;.
+E.g. to call the US phone number 415 555 0101, it should be specified as
+&ldquo;+14155550101&rdquo;, where the &lsquo;+&rsquo; is the required prefix and the US country
+code &lsquo;1&rsquo; added before the local subscriber number.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>custom</code></th>
+						<td><p>Application-specific custom data that will be passed to
+REST API callbacks made to the application&rsquo;s backend.
+This custom data will also be written to CDRs (Call Detail Records).
+(If complex data is to be passed along, it must first be encoded as a
+NSString*, e.g. encoded as JSON or Base64.)</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>A new Callout-based SINVerification instance.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Protocols/SINPhoneNumberUtil.html">SINPhoneNumberUtil</a> for formatting a phone number in E.164 format.</p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINVerification.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/version" title="version"></a>
+	<h3 class="method-title"><code><a href="#//api/name/version">+&nbsp;version</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Returns the Sinch Verification SDK version.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (NSString *)version</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINVerification.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setLogCallback:" title="setLogCallback:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setLogCallback:">+&nbsp;setLogCallback:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Set a log callback block.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)setLogCallback:(__nullable SINLogCallback)<em>block</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>block</code></th>
+						<td><p>log callback block. IMPORTANT: The block may be invoked on any thread / GCD queue.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The Sinch Verification SDK will emit all it&rsquo;s logging by invoking the specified block.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINVerification.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2017 Sinch. All rights reserved. Updated: 2017-04-28</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

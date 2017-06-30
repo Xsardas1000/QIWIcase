@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>SINPhoneNumberUtil Protocol Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1334)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">SinchVerification </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Sinch</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/countryCallingCodeForRegion:">- countryCallingCodeForRegion:</option>
+		
+		<option value="//api/name/exampleNumberForRegion:">- exampleNumberForRegion:</option>
+		
+		<option value="//api/name/formatNumber:format:">- formatNumber:format:</option>
+		
+		<option value="//api/name/isPossibleNumber:error:">- isPossibleNumber:error:</option>
+		
+		<option value="//api/name/isPossibleNumber:fromRegion:error:">- isPossibleNumber:fromRegion:error:</option>
+		
+		<option value="//api/name/parse:defaultRegion:error:">- parse:defaultRegion:error:</option>
+		
+		<option value="//api/name/regionListWithLocale:">- regionListWithLocale:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">SINPhoneNumberUtil Protocol Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Conforms to</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>SINPhoneNumberUtil.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>IMPORTANT: SINPhoneNumberUtil is <em>not</em> thread-safe.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/parse:defaultRegion:error:" title="parse:defaultRegion:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/parse:defaultRegion:error:">&ndash;&nbsp;parse:defaultRegion:error:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Parses a string as a phone number. The phone number is an opaque type</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable id&lt;SINPhoneNumber&gt;)parse:(NSString *)<em>string</em> defaultRegion:(NSString *)<em>isoCountryCode</em> error:(NSError **)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>string</code></th>
+						<td><p>input to parse.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>isoCountryCode</code></th>
+						<td><p>default region as ISO-3166-1 country code.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p>will be assigned if the string cannot be parsed
+as a valid phone number.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>a phone number instance, or nil if the input cannot be
+parsed as a valid phone number.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p>To format the parsed phone number, use <a href="#//api/name/formatNumber:format:">[SINPhoneNumberUtil formatNumber:format:]</a>.</p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINPhoneNumberUtil.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/formatNumber:format:" title="formatNumber:format:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/formatNumber:format:">&ndash;&nbsp;formatNumber:format:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Format a phone number in the specified format.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSString *)formatNumber:(id&lt;SINPhoneNumber&gt;)<em>phoneNumber</em> format:(SINPhoneNumberFormat)<em>format</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>phoneNumber</code></th>
+						<td><p>a phone number instance.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>format</code></th>
+						<td><p>a format specifier, e.g. E.164, National or
+International format.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>formatted string. Returns empty string if input is invalid.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINPhoneNumberUtil.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/exampleNumberForRegion:" title="exampleNumberForRegion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/exampleNumberForRegion:">&ndash;&nbsp;exampleNumberForRegion:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Get an example phone number.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable id&lt;SINPhoneNumber&gt;)exampleNumberForRegion:(NSString *)<em>isoCountryCode</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>isoCountryCode</code></th>
+						<td><p>region as ISO-3166-1 country code.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>example phone number. May return nil if the input region
+country code is invalid.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Defaults to returning a Mobile example number.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINPhoneNumberUtil.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/isPossibleNumber:fromRegion:error:" title="isPossibleNumber:fromRegion:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/isPossibleNumber:fromRegion:error:">&ndash;&nbsp;isPossibleNumber:fromRegion:error:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Checks whether input is a possible phone number, given a country
+code where the number would be dialed from.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)isPossibleNumber:(NSString *)<em>string</em> fromRegion:(NSString *)<em>isoCountryCode</em> error:(NSError **)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>string</code></th>
+						<td><p>input as an NSString*.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>isoCountryCode</code></th>
+						<td><p>region as ISO-3166-1 country code where the
+number will be dialed from.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p>that will be assigned if the string cannot be parsed
+as a phone number.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Note that even if this method indicates that the input is a
+possible phone number, it doesn&rsquo;t necessarily mean it&rsquo;s a valid
+phone number. I.e. this is a less strict check.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINPhoneNumberUtil.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/isPossibleNumber:error:" title="isPossibleNumber:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/isPossibleNumber:error:">&ndash;&nbsp;isPossibleNumber:error:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Checks whether input is a possible phone number.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)isPossibleNumber:(id&lt;SINPhoneNumber&gt;)<em>phoneNumber</em> error:(NSError **)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>phoneNumber</code></th>
+						<td><p>input as a parsed id<a href="../Protocols/SINPhoneNumber.html">SINPhoneNumber</a></p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p>that will be assigned if the string cannot be parsed
+as a phone number.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>indication of whether the input is a possible / viable phone number.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Note that even if this method indicates that the input is a possible phone number,
+it doesn&rsquo;t necessarily mean it&rsquo;s a valid phone number. I.e. this is a less strict
+check.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINPhoneNumberUtil.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/countryCallingCodeForRegion:" title="countryCallingCodeForRegion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/countryCallingCodeForRegion:">&ndash;&nbsp;countryCallingCodeForRegion:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Get a country calling code given a ISO-3166-1 country code.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable NSNumber *)countryCallingCodeForRegion:(NSString *)<em>isoCountryCode</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>isoCountryCode</code></th>
+						<td><p>region as ISO-3166-1 country.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>Country calling code corresponding to the given region. Return nil in case of failure.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINPhoneNumberUtil.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/regionListWithLocale:" title="regionListWithLocale:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/regionListWithLocale:">&ndash;&nbsp;regionListWithLocale:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Returns a region / country list structure that contains info on all
+countries / regions available by NSLocale.ISOCountryCodes.  Each
+entry in the list provides info such as ISO 3166-1 country code,
+country dialing code, and country display name (according to the
+given locale).</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (id&lt;SINRegionList&gt;)regionListWithLocale:(NSLocale *)<em>locale</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>locale</code></th>
+						<td><p>locale that will be used to derive a display name
+for the region / country.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SINPhoneNumberUtil.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2017 Sinch. All rights reserved. Updated: 2017-04-28</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>
