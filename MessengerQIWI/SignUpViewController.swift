@@ -48,6 +48,9 @@ class SignUpViewController: UIViewController {
                                         "username": username]
                         
                         DataService.dataService.usersRef.child((user?.uid)!).setValue(userData)
+                        DataService.dataService.usersRef.child((user?.uid)!).child("balance").setValue(0)
+                        
+
                         
                         //Store the uid for access
                         UserDefaults.standard.set(result?.uid, forKey: "uid")

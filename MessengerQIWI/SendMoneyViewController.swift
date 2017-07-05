@@ -100,8 +100,6 @@ class SendMoneyViewController: UIViewController {
         let currentTime = NSDate().timeIntervalSince1970 * 1000
         
         print("currentTime = \(currentTime)")
-
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func cancel() {

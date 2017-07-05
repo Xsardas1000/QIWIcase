@@ -11,6 +11,18 @@ import Firebase
 
 class ProfileViewController: UIViewController {
     
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
+    
+    @IBOutlet weak var infoButton: UIBarButtonItem!
+    
+    @IBOutlet weak var lentaButton: UIButton!
+    
+    @IBOutlet weak var dialogsButton: UIButton!
+    
+    @IBOutlet weak var addPhoneNumberButton: UIButton!
+    
+    @IBOutlet weak var attachButton: UIButton!
+    
     @IBOutlet weak var userPhoto: UIImageView!
     
     @IBOutlet weak var username: UILabel!
@@ -23,6 +35,8 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var phoneNumber: UILabel!
     
+    let progressHUD = ProgressHUD(text: "Loading data")
+    
     var user: [String : AnyObject]?
 
     
@@ -30,15 +44,36 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //let usersRef = Database.database().reference().child("users")
+        loadDataFromDatabase()
         
-        //let userUID = Auth.auth().currentUser?.uid
-        
-        //let userRef = DataService.dataService.usersRef.child("OD9oMRN6o2S2kk59gh8xFg949Zz2")
-        
-        //let userRef = DataService.dataService.usersRef.child("OD9oMRN6o2S2kk59gh8xFg949Zz2")
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func deactivateButtons() {
+        logoutButton.isEnabled = false
+        infoButton.isEnabled = false
+        lentaButton.isEnabled = false
+        dialogsButton.isEnabled = false
+        addPhoneNumberButton.isEnabled = false
+        attachButton.isEnabled = false
+    }
+    
+    func activateButtons() {
+        logoutButton.isEnabled = true
+        infoButton.isEnabled = true
+        lentaButton.isEnabled = true
+        dialogsButton.isEnabled = true
+        addPhoneNumberButton.isEnabled = true
+        attachButton.isEnabled = true
+    }
+    
 
+    func loadDataFromDatabase() {
+        
+        
+        deactivateButtons()
+        self.view.addSubview(progressHUD)
+
+        
         DataService.dataService.currentUserRef.observe(DataEventType.value, with: { (snapshot) in
             let user = snapshot.value as? [String : AnyObject] ?? [:]
             
@@ -61,7 +96,7 @@ class ProfileViewController: UIViewController {
             } else {
                 print("filling info")
                 
-
+                
                 let info = user["info"] as! [String: AnyObject]
                 
                 self.realName.text = info["name"] as? String
@@ -73,10 +108,13 @@ class ProfileViewController: UIViewController {
                 let base64String = info["photo"] as! String
                 self.userPhoto.image =  self.populateImage(imageString: base64String)
                 
-
+                
             }
+            
+            self.progressHUD.isHidden = true
+            self.activateButtons()
         })
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        
 
     }
     

@@ -16,6 +16,7 @@
 		B528CD321F059BE7003E9998 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B528CD311F059BE7003E9998 /* UserInfo.swift */; };
 		B528CD361F05BA2A003E9998 /* AddInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B528CD351F05BA2A003E9998 /* AddInfoTableViewController.swift */; };
 		B528CD381F05D99E003E9998 /* AttachWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B528CD371F05D99E003E9998 /* AttachWalletViewController.swift */; };
+		B52F16891F087418001F09EA /* SetDebtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52F16881F087418001F09EA /* SetDebtViewController.swift */; };
 		B55E807E1F01203A00BF5C9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E807D1F01203A00BF5C9A /* AppDelegate.swift */; };
 		B55E80831F01203A00BF5C9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B55E80811F01203A00BF5C9A /* Main.storyboard */; };
 		B55E80861F01203A00BF5C9A /* MessengerQIWI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B55E80841F01203A00BF5C9A /* MessengerQIWI.xcdatamodeld */; };
@@ -25,6 +26,10 @@
 		B55E80961F019EFF00BF5C9A /* AuthorizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E80951F019EFF00BF5C9A /* AuthorizeViewController.swift */; };
 		B55E80981F01C53D00BF5C9A /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E80971F01C53D00BF5C9A /* EnterCodeViewController.swift */; };
 		B5C2A6F61F06655E00A41815 /* DialogsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C2A6F51F06655E00A41815 /* DialogsTableViewController.swift */; };
+		B5DE8B801F087AB300937A96 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DE8B7F1F087AB300937A96 /* Request.swift */; };
+		B5DE8B821F0B145700937A96 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DE8B811F0B145700937A96 /* ProgressHUD.swift */; };
+		B5DE8B841F0B259200937A96 /* histTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DE8B831F0B259200937A96 /* histTableViewCell.swift */; };
+		B5DE8B861F0C5F5B00937A96 /* NewDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DE8B851F0C5F5B00937A96 /* NewDialogViewController.swift */; };
 		B5E876911F06E1A200EAF547 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E876901F06E1A200EAF547 /* Foundation.framework */; };
 		B5E876931F06E1C300EAF547 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E876921F06E1C300EAF547 /* CFNetwork.framework */; };
 		B5F647F01F06B05900EF512D /* DetailDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F647EF1F06B05900EF512D /* DetailDialogViewController.swift */; };
@@ -45,6 +50,7 @@
 		B528CD311F059BE7003E9998 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		B528CD351F05BA2A003E9998 /* AddInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInfoTableViewController.swift; sourceTree = "<group>"; };
 		B528CD371F05D99E003E9998 /* AttachWalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachWalletViewController.swift; sourceTree = "<group>"; };
+		B52F16881F087418001F09EA /* SetDebtViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDebtViewController.swift; sourceTree = "<group>"; };
 		B55E807A1F01203A00BF5C9A /* MessengerQIWI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessengerQIWI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B55E807D1F01203A00BF5C9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B55E80821F01203A00BF5C9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -57,6 +63,10 @@
 		B55E80951F019EFF00BF5C9A /* AuthorizeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizeViewController.swift; sourceTree = "<group>"; };
 		B55E80971F01C53D00BF5C9A /* EnterCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
 		B5C2A6F51F06655E00A41815 /* DialogsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogsTableViewController.swift; sourceTree = "<group>"; };
+		B5DE8B7F1F087AB300937A96 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		B5DE8B811F0B145700937A96 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
+		B5DE8B831F0B259200937A96 /* histTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = histTableViewCell.swift; sourceTree = "<group>"; };
+		B5DE8B851F0C5F5B00937A96 /* NewDialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDialogViewController.swift; sourceTree = "<group>"; };
 		B5E876901F06E1A200EAF547 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B5E876921F06E1C300EAF547 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		B5F647EF1F06B05900EF512D /* DetailDialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailDialogViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +104,8 @@
 				B55E80841F01203A00BF5C9A /* MessengerQIWI.xcdatamodeld */,
 				B55E807D1F01203A00BF5C9A /* AppDelegate.swift */,
 				B528CD311F059BE7003E9998 /* UserInfo.swift */,
+				B5DE8B7F1F087AB300937A96 /* Request.swift */,
+				B5DE8B811F0B145700937A96 /* ProgressHUD.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -122,6 +134,9 @@
 				B5C2A6F51F06655E00A41815 /* DialogsTableViewController.swift */,
 				B5F647EF1F06B05900EF512D /* DetailDialogViewController.swift */,
 				B5F647F11F06BED100EF512D /* SendMoneyViewController.swift */,
+				B52F16881F087418001F09EA /* SetDebtViewController.swift */,
+				B5DE8B831F0B259200937A96 /* histTableViewCell.swift */,
+				B5DE8B851F0C5F5B00937A96 /* NewDialogViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -307,10 +322,15 @@
 			files = (
 				B55E80981F01C53D00BF5C9A /* EnterCodeViewController.swift in Sources */,
 				B55E80861F01203A00BF5C9A /* MessengerQIWI.xcdatamodeld in Sources */,
+				B5DE8B821F0B145700937A96 /* ProgressHUD.swift in Sources */,
 				B528CD381F05D99E003E9998 /* AttachWalletViewController.swift in Sources */,
+				B52F16891F087418001F09EA /* SetDebtViewController.swift in Sources */,
+				B5DE8B861F0C5F5B00937A96 /* NewDialogViewController.swift in Sources */,
+				B5DE8B841F0B259200937A96 /* histTableViewCell.swift in Sources */,
 				B55E80931F0127CF00BF5C9A /* WelcomePageViewController.swift in Sources */,
 				B55E80961F019EFF00BF5C9A /* AuthorizeViewController.swift in Sources */,
 				B528CD2A1F054E4F003E9998 /* LoginViewController.swift in Sources */,
+				B5DE8B801F087AB300937A96 /* Request.swift in Sources */,
 				B528CD261F053F5C003E9998 /* ProfileViewController.swift in Sources */,
 				B528CD361F05BA2A003E9998 /* AddInfoTableViewController.swift in Sources */,
 				B5F647F01F06B05900EF512D /* DetailDialogViewController.swift in Sources */,

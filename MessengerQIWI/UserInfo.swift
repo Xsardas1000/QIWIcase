@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 
 class UserInfo {
+    var uid: String?
     var friends: [String: AnyObject]?
     var info: [String: AnyObject]?
     var email: String?
@@ -19,7 +20,8 @@ class UserInfo {
     var verified: Bool?
     
     
-    init(snapshot: [String: AnyObject]) {
+    init(snapshot: [String: AnyObject], uid: String) {
+        self.uid = uid
         self.friends = snapshot["friends"] as? [String: AnyObject]
         self.info = snapshot["info"] as? [String: AnyObject]
         self.username = snapshot["username"] as? String

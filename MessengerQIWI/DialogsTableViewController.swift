@@ -13,6 +13,11 @@ import Alamofire
 class DialogsTableViewController: UITableViewController {
     
     
+    //добавить друга (диалог)
+    @IBAction func addDialog(_ sender: UIBarButtonItem) {
+        
+    }
+    
     var friends: [UserInfo] = []
     var friendsUIDs: [String] = []
     
@@ -20,9 +25,18 @@ class DialogsTableViewController: UITableViewController {
     @IBAction func cancel() {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func localTimeZoneAbbreviation() -> String {
+        return NSTimeZone.local.abbreviation(for: Date())!
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
+
+
         
         loadDataFromDatabase()
         
@@ -48,6 +62,7 @@ class DialogsTableViewController: UITableViewController {
     }
 
     
+    // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath)
         print("cell", indexPath.row)
@@ -74,7 +89,7 @@ class DialogsTableViewController: UITableViewController {
                 DataService.dataService.usersRef.child(key).observe(DataEventType.value, with:  { (snapshot) in
                     let user = snapshot.value as? [String : AnyObject] ?? [:]
                     
-                    let newUser: UserInfo = UserInfo(snapshot: user)
+                    let newUser: UserInfo = UserInfo(snapshot: user, uid: key)
                     self.friends.append(newUser)
                     self.tableView.reloadData()
                     print("append user", newUser.username!)
@@ -88,7 +103,7 @@ class DialogsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected ", indexPath.row)
         let cell = tableView.cellForRow(at: indexPath)
-        print("name ", self.friends[indexPath.row].username)
+        print("name ", self.friends[indexPath.row].username!)
         
         
         //переход на другой экран по segue
@@ -100,15 +115,11 @@ class DialogsTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //вызывается при каждом переходе на другой экран по нажатию
-        
-        print("test1")
-
+    
         if segue.identifier == "toDialogItem" {
             let controller = segue.destination as? DetailDialogViewController
 
             controller?.user = sender as? UserInfo
-            
-            print("test2")
         }
         
     }

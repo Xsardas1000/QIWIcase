@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
-class DetailDialogViewController: UIViewController {
+class DetailDialogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var user: UserInfo?
+    var requests: [Request] = []
     
     @IBOutlet weak var historyTableView: UITableView!
 
@@ -19,8 +21,14 @@ class DetailDialogViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = user?.username
+        
+        historyTableView.delegate = self
+        historyTableView.dataSource = self
+        
+        print("userUID = ", user!.uid!)
+        loadDialogFromDatabase()
+        
 
-        // Do any additional setup after loading the view.
     }
     
     /*@IBAction func sendMoney(_ sender: UIButton, forEvent event: UIEvent) {
@@ -28,36 +36,81 @@ class DetailDialogViewController: UIViewController {
     }*/
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //вызывается при каждом переходе на другой экран по нажатию
-        
-        print("test4")
         
         if segue.identifier == "sendMoney" {
             let controller = segue.destination as? SendMoneyViewController
             
             controller?.user = self.user
-            
-            print("user = ", self.user)
-            print("contr user = ", controller?.user)
 
-            print("test5")
+        } else if segue.identifier == "setDebt" {
+            let controller = segue.destination as? SetDebtViewController
+            controller?.user = self.user
         }
         
     }
+    
+    
+    func loadDialogFromDatabase() {
+        DataService.dataService.currentUserRef.child("requests").observe(DataEventType.value, with: { (snapshot) in
+            let requests = snapshot.value as? [String : AnyObject] ?? [:]
+            for request in requests {
+                if (request.value["receiverUID"] as! String)  == self.user?.uid {
+                    let newRequest = Request(snapshot: request.value as! [String : AnyObject] )
+                    self.requests.append(newRequest)
+                    print("true1")
+                }
+            }
+            print("num of requests after loading1", self.requests.count)
+            self.historyTableView.reloadData()
+        })
+        
+        DataService.dataService.currentUserRef.child("reseptions").observe(DataEventType.value, with: { (snapshot) in
+            let requests = snapshot.value as? [String : AnyObject] ?? [:]
+            for request in requests {
+                if (request.value["senderUID"] as! String)  == self.user?.uid {
+                    let newRequest = Request(snapshot: request.value as! [String : AnyObject] )
+                    self.requests.append(newRequest)
+                    print("true2")
+                }
+            }
+            print("num of requests after loading2", self.requests.count)
+            self.historyTableView.reloadData()
+        })
+    }
+    
+    
+    //MARK: - UITableViewDataSourse
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("num of requests in table", requests.count)
+        return requests.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = historyTableView.dequeueReusableCell(withIdentifier: "histCell", for: indexPath)
+        as! histTableViewCell
+     
+        let request = self.requests[indexPath.row]
+        print("cell", request.type!)
+        
+        cell.amountMoney.text = request.amount
+        cell.date.text = request.date
+        
+        cellCheckbox(cell: cell, isAccepted: request.accepted!)
+        
+        return cell
+     }
+    
 
     
-    @IBAction func issueInvoice(_ sender: UIButton) {
+    func cellCheckbox(cell: UITableViewCell, isAccepted: Bool){
+        if !isAccepted {
+            cell.accessoryType = UITableViewCellAccessoryType.detailButton
         
-    }
-    
-    @IBAction func askDebt(_ sender: UIButton) {
-        
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
 }
