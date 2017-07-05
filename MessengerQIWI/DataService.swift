@@ -35,7 +35,7 @@ class DataService {
     
     var currentUserRef: DatabaseReference {
         let userUID = Auth.auth().currentUser?.uid
-        return DataService.dataService.usersRef.child("OD9oMRN6o2S2kk59gh8xFg949Zz2")
+        return DataService.dataService.usersRef.child(userUID!)
 
     }
     

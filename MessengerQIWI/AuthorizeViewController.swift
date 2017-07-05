@@ -146,7 +146,9 @@ class AuthorizeViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    
+    @IBAction func cancel() {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -232,6 +234,8 @@ extension NSRange {
         return fromIndex ..< toIndex
     }
 }
+
+
 
 
 

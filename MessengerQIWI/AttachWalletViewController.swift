@@ -128,6 +128,10 @@ class AttachWalletViewController: UIViewController {
             
         })
     }
+    
+    @IBAction func cancel() {
+        self.dismiss(animated: true, completion: nil)
+    }
 
 
 }

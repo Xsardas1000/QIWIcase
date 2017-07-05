@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3wH-U6-Ux7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -578,7 +578,13 @@
                             <constraint firstAttribute="trailing" secondItem="fdh-PZ-Z6a" secondAttribute="trailing" constant="40" id="zEv-Gb-3mx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="b7g-eY-QhL"/>
+                    <navigationItem key="navigationItem" id="b7g-eY-QhL">
+                        <barButtonItem key="leftBarButtonItem" title="Назад" id="N4C-0Z-LTz">
+                            <connections>
+                                <action selector="cancel" destination="Zdj-KP-R6r" id="bmD-dB-sOT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="codeTextField" destination="tVV-NH-gXm" id="QMT-oO-R7m"/>
                         <outlet property="getCodeButton" destination="lIn-Np-4ux" id="fzf-Fm-smb"/>
@@ -1292,7 +1298,13 @@
                             <constraint firstItem="qjc-OA-vId" firstAttribute="leading" secondItem="Ewa-4M-O5M" secondAttribute="leading" constant="40" id="hKD-Bn-wXL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Привязка кошелька Qiwi" id="Fjd-qU-yxw"/>
+                    <navigationItem key="navigationItem" title="Привязка кошелька Qiwi" id="Fjd-qU-yxw">
+                        <barButtonItem key="leftBarButtonItem" title="Назад" id="eco-24-zyH">
+                            <connections>
+                                <action selector="cancel" destination="JWV-fd-A2f" id="YGL-Jy-iFT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="codeTextField" destination="qjc-OA-vId" id="8kQ-NI-GwM"/>
                     </connections>
