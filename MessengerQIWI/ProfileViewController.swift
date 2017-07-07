@@ -45,7 +45,6 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         loadDataFromDatabase()
-        
     }
     
     func deactivateButtons() {

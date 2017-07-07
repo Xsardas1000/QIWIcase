@@ -35,9 +35,10 @@ class DialogsTableViewController: UITableViewController {
         super.viewDidLoad()
         
 
-
+        print("view did load in DialogsTVC")
 
         
+        DataService.dataService.currentUserRef.removeAllObservers()
         loadDataFromDatabase()
         
         

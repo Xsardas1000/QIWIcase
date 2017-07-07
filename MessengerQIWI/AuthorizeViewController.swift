@@ -95,13 +95,17 @@ class AuthorizeViewController: UIViewController, UITextFieldDelegate {
                     self.statusLabel.text = "Verified"
                     
                     
-                    let info = DataService.dataService.currentUserRef.child("verified")
-                    
                     //write data to Firebase
+                    let info = DataService.dataService.currentUserRef.child("verified")
                     info.setValue(true)
+                    
+                    let phone = DataService.dataService.currentUserRef.child("phone")
+                    phone.setValue(self.phoneNumberTextField.text)
+
                     
                     //возвращаемся обратно
                     self.dismiss(animated: true, completion: nil)
+                
                     
                     
                 } else {
@@ -110,7 +114,7 @@ class AuthorizeViewController: UIViewController, UITextFieldDelegate {
         });
     }
 
-    
+/*
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if (segue.identifier == "enterPin") {
             //let enterCodeVC = segue.destination as! EnterCodeViewController
@@ -144,7 +148,7 @@ class AuthorizeViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-    
+ */
     
     @IBAction func cancel() {
         self.dismiss(animated: true, completion: nil)

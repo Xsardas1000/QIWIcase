@@ -28,6 +28,8 @@ class DetailDialogViewController: UIViewController, UITableViewDelegate, UITable
         print("userUID = ", user!.uid!)
         loadDialogFromDatabase()
         
+        
+        //DataService.dataService.currentUserRef.removeAllObservers()
 
     }
     

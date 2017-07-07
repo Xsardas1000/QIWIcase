@@ -64,6 +64,8 @@ class SetDebtViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCurrentUserData()
+        
+        //DataService.dataService.currentUserRef.removeAllObservers()
     }
 
     

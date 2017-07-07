@@ -81,6 +81,8 @@ class SendMoneyViewController: UIViewController {
                                 
             }
         })
+        
+        //DataService.dataService.currentUserRef.removeAllObservers()
     }
     
     func convertToBase64String(str: String) -> String {

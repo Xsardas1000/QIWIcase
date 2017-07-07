@@ -782,7 +782,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите номер телефона:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZA-SS-xFg">
-                                <rect key="frame" x="40" y="84" width="295" height="20"/>
+                                <rect key="frame" x="40" y="40" width="295" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="4bp-FT-isT"/>
                                 </constraints>
@@ -791,7 +791,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="+79001001010" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E7d-Ev-57m">
-                                <rect key="frame" x="40" y="124" width="295" height="30"/>
+                                <rect key="frame" x="40" y="80" width="295" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Gfz-dI-afh"/>
                                 </constraints>
@@ -800,7 +800,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VzW-Ne-86P">
-                                <rect key="frame" x="40" y="174" width="295" height="30"/>
+                                <rect key="frame" x="40" y="130" width="295" height="30"/>
                                 <color key="backgroundColor" red="0.007561100181" green="0.33031055329999998" blue="0.61270838979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="z8y-MW-blG"/>
@@ -813,7 +813,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIp-mG-EnB">
-                                <rect key="frame" x="40" y="214" width="295" height="29"/>
+                                <rect key="frame" x="40" y="170" width="295" height="29"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Если пользователь с указанным номером зарегистрирован, то создастся новый диалог">
                                         <attributes>
@@ -849,6 +849,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="createDialog" destination="VzW-Ne-86P" id="jXE-uQ-LeT"/>
                         <outlet property="phoneNumberTextField" destination="E7d-Ev-57m" id="QLU-z5-Trj"/>
                     </connections>
                 </viewController>
@@ -916,7 +917,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JBz-0P-tD4">
                             <connections>
                                 <action selector="addDialog:" destination="ZdU-1B-Sn0" id="bhD-jD-b7r"/>
-                                <segue destination="lSn-5w-9nN" kind="presentation" id="u8B-Ai-gHL"/>
+                                <segue destination="lSn-5w-9nN" kind="show" id="u8B-Ai-gHL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -941,7 +942,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Баланс:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ce3-c2-ejm">
-                                <rect key="frame" x="20" y="84" width="62" height="30"/>
+                                <rect key="frame" x="20" y="40" width="62" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="1wM-qo-5On"/>
                                     <constraint firstAttribute="width" constant="62" id="jfQ-3X-JgL"/>
@@ -951,7 +952,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zA-Gb-rlL">
-                                <rect key="frame" x="185" y="84" width="170" height="30"/>
+                                <rect key="frame" x="185" y="40" width="170" height="30"/>
                                 <color key="backgroundColor" red="0.87215596437454224" green="0.95307856798171997" blue="0.96593064069747925" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="170" id="EIg-Rp-jO4"/>
@@ -962,7 +963,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="История операций:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfY-GN-att">
-                                <rect key="frame" x="20" y="137" width="170" height="30"/>
+                                <rect key="frame" x="20" y="93" width="170" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="15i-Ii-rRe"/>
                                     <constraint firstAttribute="width" constant="170" id="mbb-na-LPf"/>
@@ -972,7 +973,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sXw-Ac-m6w">
-                                <rect key="frame" x="20" y="177" width="335" height="330"/>
+                                <rect key="frame" x="20" y="133" width="335" height="374"/>
                                 <color key="backgroundColor" red="0.87215596437454224" green="0.95307856798171997" blue="0.96593064069747925" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="histCell" id="aVx-nr-vUd" customClass="histTableViewCell" customModule="MessengerQIWI" customModuleProvider="target">
@@ -1098,7 +1099,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите сумму" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="azy-vN-2FG">
-                                <rect key="frame" x="90" y="84" width="195" height="30"/>
+                                <rect key="frame" x="90" y="40" width="195" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="c3G-rw-iC0"/>
                                 </constraints>
@@ -1107,7 +1108,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert" returnKeyType="next"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHv-cR-KOP">
-                                <rect key="frame" x="40" y="279" width="295" height="30"/>
+                                <rect key="frame" x="40" y="235" width="295" height="30"/>
                                 <color key="backgroundColor" red="0.007561100181" green="0.33031055329999998" blue="0.61270838979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="LF0-fy-HEc"/>
@@ -1121,7 +1122,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Комментарий:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2X-fK-DwT">
-                                <rect key="frame" x="20" y="124" width="120" height="20"/>
+                                <rect key="frame" x="20" y="80" width="120" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="Dtr-ea-AxE"/>
                                     <constraint firstAttribute="height" constant="20" id="ig0-dC-r1L"/>
@@ -1131,7 +1132,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="black" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Rcy-0b-ExV">
-                                <rect key="frame" x="20" y="159" width="335" height="100"/>
+                                <rect key="frame" x="20" y="115" width="335" height="100"/>
                                 <color key="backgroundColor" red="0.89553551982909729" green="1" blue="0.8674459398330544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="oId-Df-cKX"/>
@@ -1178,7 +1179,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите сумму" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="INg-C9-WRU">
-                                <rect key="frame" x="90" y="84" width="195" height="30"/>
+                                <rect key="frame" x="90" y="40" width="195" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ps8-iD-sgF"/>
                                 </constraints>
@@ -1187,7 +1188,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert" returnKeyType="next"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dv-g5-gvc">
-                                <rect key="frame" x="40" y="134" width="295" height="30"/>
+                                <rect key="frame" x="40" y="90" width="295" height="30"/>
                                 <color key="backgroundColor" red="0.007561100181" green="0.33031055329999998" blue="0.61270838979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="euB-j8-gRv"/>
@@ -1352,7 +1353,6 @@
         <!--Navigation Controller-->
         <scene sceneID="VbE-CT-9k5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gi0-5f-ETN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lSn-5w-9nN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MUI-MF-oqP">
@@ -1364,6 +1364,7 @@
                         <segue destination="kkN-zx-zwI" kind="relationship" relationship="rootViewController" id="YKA-vs-hWv"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gi0-5f-ETN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4361" y="922"/>
         </scene>
