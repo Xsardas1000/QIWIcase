@@ -22,7 +22,7 @@ class Request {
     
     init(snapshot: [String: AnyObject]) {
         
-        self.requestUID = snapshot["requestUID"] as? String
+        self.requestUID = snapshot["requestID"] as? String
         self.senderUID = snapshot["senderUID"] as? String
         self.receiverUID = snapshot["receiverUID"] as? String
         let typeStr = snapshot["type"] as? String

@@ -44,6 +44,9 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        DataService.dataService.usersRef.removeAllObservers()
+        DataService.dataService.currentUserRef.removeAllObservers()
+        
         loadDataFromDatabase()
     }
     

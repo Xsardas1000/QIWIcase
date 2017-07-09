@@ -1,8 +1,8 @@
 //
-//  SetDebtViewController.swift
+//  AskMoneyViewController.swift
 //  MessengerQIWI
 //
-//  Created by Максим on 02.07.17.
+//  Created by Максим on 08.07.17.
 //  Copyright © 2017 Максим. All rights reserved.
 //
 
@@ -10,20 +10,18 @@ import UIKit
 import Alamofire
 import Firebase
 
-class SetDebtViewController: UIViewController {
-
-    var user: UserInfo?
-    var currentUser: UserInfo?
+class AskMoneyViewController: UIViewController {
 
     @IBOutlet weak var amountMoneyTextField: UITextField!
-    
     @IBOutlet weak var commentTextView: UITextView!
     
+    var user: UserInfo?
+    var currentUser: UserInfo?
+    
     @IBAction func sendRequest(_ sender: UIButton, forEvent event: UIEvent) {
-        
         print("currentUser = ", self.currentUser!.username!)
         print("reciever = ", self.user!.username!)
-
+        
         
         let newReseptionRef =
             DataService.dataService.usersRef.child((user?.uid)!).child("reseptions").childByAutoId()
@@ -34,7 +32,7 @@ class SetDebtViewController: UIViewController {
         let comment = commentTextView.text
         
         let message: [String: AnyObject] = ["requestID": newReseptionRef.key,
-                                            "type":"setDebt",
+                                            "type":"askMoney",
                                             "comment": comment!,
                                             "senderUID": currentUser!.uid!,
                                             "receiverUID": user!.uid!,
@@ -42,14 +40,14 @@ class SetDebtViewController: UIViewController {
                                             "accepted": false,
                                             "time": Date().timeIntervalSince1970,
                                             "date": getCurrentDate()
-                                            ] as [String: AnyObject]
+            ] as [String: AnyObject]
         
         newReseptionRef.setValue(message)
         
         let newRequestRef = DataService.dataService.currentUserRef.child("requests").childByAutoId()
         
         newRequestRef.setValue(message)
-        
+
     }
     
     func loadCurrentUserData() {
@@ -65,7 +63,7 @@ class SetDebtViewController: UIViewController {
         
         //DataService.dataService.currentUserRef.removeAllObservers()
     }
-
+    
     
     func getCurrentDate() -> String {
         let formatter = DateFormatter()
@@ -75,5 +73,7 @@ class SetDebtViewController: UIViewController {
         let result = formatter.string(from: date)
         return result
     }
+
+
 
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B520900D1F11665500E6BEF6 /* AskMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520900C1F11665500E6BEF6 /* AskMoneyViewController.swift */; };
+		B520900F1F11A08100E6BEF6 /* RequestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520900E1F11A08100E6BEF6 /* RequestDetailViewController.swift */; };
 		B528CD211F053C61003E9998 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B528CD201F053C61003E9998 /* GoogleService-Info.plist */; };
 		B528CD241F053E4C003E9998 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B528CD231F053E4C003E9998 /* Utils.swift */; };
 		B528CD261F053F5C003E9998 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B528CD251F053F5C003E9998 /* ProfileViewController.swift */; };
@@ -41,6 +43,8 @@
 		46B80469077D69E6572E1567 /* Pods-MessengerQIWI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessengerQIWI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessengerQIWI/Pods-MessengerQIWI.debug.xcconfig"; sourceTree = "<group>"; };
 		5238711869AC4712210FCE33 /* Pods_MessengerQIWI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessengerQIWI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		652FB287DD55DFE105040E6A /* Pods-MessengerQIWI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessengerQIWI.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessengerQIWI/Pods-MessengerQIWI.release.xcconfig"; sourceTree = "<group>"; };
+		B520900C1F11665500E6BEF6 /* AskMoneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskMoneyViewController.swift; sourceTree = "<group>"; };
+		B520900E1F11A08100E6BEF6 /* RequestDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDetailViewController.swift; sourceTree = "<group>"; };
 		B528CD201F053C61003E9998 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B528CD231F053E4C003E9998 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		B528CD251F053F5C003E9998 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -135,8 +139,10 @@
 				B5F647EF1F06B05900EF512D /* DetailDialogViewController.swift */,
 				B5F647F11F06BED100EF512D /* SendMoneyViewController.swift */,
 				B52F16881F087418001F09EA /* SetDebtViewController.swift */,
+				B520900C1F11665500E6BEF6 /* AskMoneyViewController.swift */,
 				B5DE8B831F0B259200937A96 /* histTableViewCell.swift */,
 				B5DE8B851F0C5F5B00937A96 /* NewDialogViewController.swift */,
+				B520900E1F11A08100E6BEF6 /* RequestDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -325,9 +331,11 @@
 				B5DE8B821F0B145700937A96 /* ProgressHUD.swift in Sources */,
 				B528CD381F05D99E003E9998 /* AttachWalletViewController.swift in Sources */,
 				B52F16891F087418001F09EA /* SetDebtViewController.swift in Sources */,
+				B520900D1F11665500E6BEF6 /* AskMoneyViewController.swift in Sources */,
 				B5DE8B861F0C5F5B00937A96 /* NewDialogViewController.swift in Sources */,
 				B5DE8B841F0B259200937A96 /* histTableViewCell.swift in Sources */,
 				B55E80931F0127CF00BF5C9A /* WelcomePageViewController.swift in Sources */,
+				B520900F1F11A08100E6BEF6 /* RequestDetailViewController.swift in Sources */,
 				B55E80961F019EFF00BF5C9A /* AuthorizeViewController.swift in Sources */,
 				B528CD2A1F054E4F003E9998 /* LoginViewController.swift in Sources */,
 				B5DE8B801F087AB300937A96 /* Request.swift in Sources */,

@@ -11,11 +11,11 @@ import Alamofire
 
 class WelcomePageViewController: UIViewController {
     
-    @IBOutlet weak var loginButton: UIButton!
+    //@IBOutlet weak var loginButton: UIButton!
 
     @IBOutlet weak var authorizeButton: UIButton!
     
-    @IBAction func tapAuthorizeButton(_ sender: UIButton, forEvent event: UIEvent) {
+    /*@IBAction func tapAuthorizeButton(_ sender: UIButton, forEvent event: UIEvent) {
         performSegue(withIdentifier: "authorize", sender: self)
     }
     
@@ -25,7 +25,7 @@ class WelcomePageViewController: UIViewController {
         let phoneNumber = "79031050112"
         
         let headers: HTTPHeaders = [
-            "Accept": "*/*", //
+            "Accept": "", //
             "Content-Type": "application/x-www-form-urlencoded",
             "Accept-Encoding": "gzip, deflate, compress",
             "User-Agent": "HTTPie/0.3.0"
@@ -146,7 +146,7 @@ class WelcomePageViewController: UIViewController {
         return base64String
     }
     
-
+*/
     override func viewDidLoad() {
         super.viewDidLoad()
 

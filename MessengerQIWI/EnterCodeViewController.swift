@@ -10,7 +10,7 @@ import UIKit
 import MessageUI
 import SinchVerification
 
-
+/*
 class EnterCodeViewController: UIViewController {
     
     var verification: Verification!
@@ -73,3 +73,4 @@ class EnterCodeViewController: UIViewController {
 
 
 }
+*/
