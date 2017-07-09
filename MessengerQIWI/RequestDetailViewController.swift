@@ -18,6 +18,7 @@ class RequestDetailViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     
+    @IBOutlet weak var acceptButton: UIButton!
     
     var user: UserInfo?
     var request: Request?
@@ -54,6 +55,10 @@ class RequestDetailViewController: UIViewController {
         print("view Did Load RequestDetailVC")
         print("userUID = ", user!.uid!)
         print("requestSenderID = ", request!.senderUID!)
+        
+        if request?.accepted == true {
+            acceptButton.isEnabled = false
+        }
         
         if request?.type == Request.RequestType.SetDebt {
             typeLabel.text = "Выставлен долг"

@@ -15,7 +15,6 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var infoButton: UIBarButtonItem!
     
-    @IBOutlet weak var lentaButton: UIButton!
     
     @IBOutlet weak var dialogsButton: UIButton!
     
@@ -53,7 +52,6 @@ class ProfileViewController: UIViewController {
     func deactivateButtons() {
         logoutButton.isEnabled = false
         infoButton.isEnabled = false
-        lentaButton.isEnabled = false
         dialogsButton.isEnabled = false
         addPhoneNumberButton.isEnabled = false
         attachButton.isEnabled = false
@@ -62,7 +60,6 @@ class ProfileViewController: UIViewController {
     func activateButtons() {
         logoutButton.isEnabled = true
         infoButton.isEnabled = true
-        lentaButton.isEnabled = true
         dialogsButton.isEnabled = true
         addPhoneNumberButton.isEnabled = true
         attachButton.isEnabled = true

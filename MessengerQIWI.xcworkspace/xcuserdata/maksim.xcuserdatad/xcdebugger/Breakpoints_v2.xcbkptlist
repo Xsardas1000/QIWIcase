@@ -248,11 +248,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MessengerQIWI/ProfileViewController.swift"
-            timestampString = "521246848.299257"
+            timestampString = "521336180.017256"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "attachWallet(_:forEvent:)"
             landmarkType = "7">
          </BreakpointContent>

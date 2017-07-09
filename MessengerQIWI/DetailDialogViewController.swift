@@ -167,7 +167,7 @@ class DetailDialogViewController: UIViewController, UITableViewDelegate, UITable
     
     func cellCheckbox(cell: UITableViewCell, isAccepted: Bool){
         if !isAccepted {
-            cell.accessoryType = UITableViewCellAccessoryType.detailButton
+            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         } else {
             cell.accessoryType = UITableViewCellAccessoryType.checkmark
