@@ -147,6 +147,12 @@ class ProfileViewController: UIViewController {
             print("user verified and goes to attach wallet")
             
             performSegue(withIdentifier: "attachSegue", sender: nil)
+        } else {
+            let alert = UIAlertController(title: "Привязка кошелька", message: "Для привязки QIWI кошелька необходимо подтвердить номер телефона!", preferredStyle: UIAlertControllerStyle.alert)
+            let okAction = UIAlertAction(title: "Понятно", style: UIAlertActionStyle.cancel, handler: nil)
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+
         }
         
     }
@@ -156,16 +162,30 @@ class ProfileViewController: UIViewController {
 
     @IBAction func logout() {
         
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
+        let alert = UIAlertController(title: "Выход", message: "Вы действительно хотите выйти из профиля?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okAction = UIAlertAction(title: "Да", style: UIAlertActionStyle.default) { (ACTION) in
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+                
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
+            }
+            UserDefaults.standard.set(nil, forKey: "uid")
+            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShowLogin")
+            UIApplication.shared.keyWindow?.rootViewController = loginViewController
         }
-        UserDefaults.standard.set(nil, forKey: "uid")
-        let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShowLogin")
-        UIApplication.shared.keyWindow?.rootViewController = loginViewController
+        
+        let cancelAction = UIAlertAction(title: "Нет", style: UIAlertActionStyle.cancel, handler: nil)
+        
+        alert.addAction(cancelAction)
+
+        
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+        
+
     }
 
 }
